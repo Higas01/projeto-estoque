@@ -1,16 +1,11 @@
 import { useState } from "react";
 
-export const useRegisterFetch = (
-  url: string,
-  endPoint: string,
-  value: Object,
-  method: string
-) => {
+export const useRegisterFetch = (url: string) => {
   const [data, setData] = useState<Object>({});
   const [loading, setLoading] = useState<boolean | null>(null);
   const [error, setError] = useState<string>("");
 
-  const fetchData = async () => {
+  const fetchData = async (value: Object, endPoint: string, method: string) => {
     if (method === "POST") {
       try {
         setLoading(true);

@@ -4,7 +4,6 @@ import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import styles from "./Register.module.css";
 import validator from "validator";
 import { useRegisterFetch } from "../../hooks/useRegisterFetch";
-import axios from "axios";
 
 interface props {
   url: string;
@@ -15,13 +14,8 @@ const Register = ({ url }: props) => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [beforeError, setBeforeError] = useState<string>("");
-  const [value, setValue] = useState<Object>({});
-  const { data, error, loading, fetchData } = useRegisterFetch(
-    url,
-    "register",
-    {},
-    "POST"
-  );
+  const [message, setMessage] = useState<object | undefined>({});
+  const { data, loading, error, fetchData } = useRegisterFetch(url);
 
   const handleSubmtit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,14 +33,18 @@ const Register = ({ url }: props) => {
       setBeforeError("Campo senha e confirmar senha precisam ser iguais");
       return;
     }
-    setValue({
+    const value: Object = {
       email,
       password,
       confirmPassword,
-    });
+    };
 
-    const req = await fetchData();
-    return req;
+    const result = await fetchData(value, "register", "POST");
+    setMessage(result);
+    console.log(message);
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   return (
@@ -94,12 +92,6 @@ const Register = ({ url }: props) => {
         </div>
         <input type="submit" value="Criar conta" className={styles.btn} />
       </form>
-      {beforeError ||
-        (error && (
-          <>
-            <p>{beforeError}</p> <p>{error}</p>
-          </>
-        ))}
     </section>
   );
 };
