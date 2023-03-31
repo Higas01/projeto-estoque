@@ -1,15 +1,17 @@
 {
+    "name": "backend",
     "version": 2,
+    "public": true,
     "builds": [
         {
-            "src": "./serve.js",
+           "src": "./serve.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "/serve.js"
         }
     ]
 }
