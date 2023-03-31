@@ -4,6 +4,7 @@ import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import styles from "./Register.module.css";
 import validator from "validator";
 import { useRegisterFetch } from "../../hooks/useRegisterFetch";
+import axios from "axios";
 
 interface props {
   url: string;

@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
 import Register from "../pages/Register/Register";
 
-const url = "https://project-estoque-three.vercel.app";
+const url = "https://project-estoque.onrender.com";
 
 function App() {
   return (
