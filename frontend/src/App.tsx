@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
 import Register from "../pages/Register/Register";
 
-const url = "http://localhost:3000";
+const url = "https://projeto-estoque-two.vercel.app";
 
 function App() {
   return (
