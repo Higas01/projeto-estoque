@@ -6,6 +6,7 @@ const ItemSchema = new Schema({
   value: Number,
   validateProduct: String,
   size: String,
+  qntd: Number,
   createdAt: { type: Date, default: Date.now },
   userId: mongoose.ObjectId,
 });

@@ -17,8 +17,8 @@ const verifyToken = async (req, res, next) => {
       next();
     });
   } catch (error) {
-    res.status(500).json({
-      error: "Ocorreu algum erro no sistema, tente novamente mais tarde",
+    res.status(500).jso({
+      error: "Ocorreu algnum erro no sistema, tente novamente mais tarde",
     });
   }
 };

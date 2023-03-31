@@ -8,6 +8,7 @@ const {
   getItemController,
   updateItemController,
   deleteItemController,
+  getItemIDController,
 } = require("./controllers/ItemController");
 const validationLogin = require("./middlewares/ValidationLogin");
 const deleteToken = require("./middlewares/DeleteToken");
@@ -22,7 +23,8 @@ router.delete("/logout", deleteToken, (req, res) => {
 
 router.post("/products/add", verifyToken, addItemController);
 router.get("/products", verifyToken, getItemController);
-router.put("/products/:id", verifyToken, updateItemController);
+router.get("/products/:id", verifyToken, getItemIDController);
+router.put("/products/update/:id", verifyToken, updateItemController);
 router.delete("/products/delete/:id", verifyToken, deleteItemController);
 
 module.exports = router;
