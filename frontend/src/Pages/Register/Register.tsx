@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import styles from "./Register.module.css";
 import validator from "validator";
@@ -9,16 +9,32 @@ interface props {
   url: string;
 }
 
+interface Response {
+  message: string;
+}
+
 const Register = ({ url }: props) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [beforeError, setBeforeError] = useState<string>("");
-  const [message, setMessage] = useState<object | undefined>({});
+  const [mensagem, setMensagem] = useState<string | undefined>(undefined);
   const { data, loading, error, fetchData } = useRegisterFetch(url);
 
-  const handleSubmtit = async (e: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    setMensagem("");
+    if (!data) {
+      return;
+    }
+    setMensagem((data as Response).message);
+    console.log(mensagem);
+  }, [data]);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    setBeforeError("");
+    setMensagem("");
+    console.log(mensagem);
     if (!validator.isEmail(email)) {
       setBeforeError("Por favor, digite um e-mail válido!");
       return;
@@ -39,9 +55,8 @@ const Register = ({ url }: props) => {
       confirmPassword,
     };
 
-    const result = await fetchData(value, "register", "POST");
-    setMessage(result);
-    console.log(message);
+    await fetchData(value, "register", "POST");
+
     setEmail("");
     setPassword("");
     setConfirmPassword("");
@@ -49,8 +64,8 @@ const Register = ({ url }: props) => {
 
   return (
     <section className={styles.section}>
-      <h1 className={styles.h1}>Registre-se em nosso sistema</h1>
-      <form className={styles.form} onSubmit={handleSubmtit}>
+      <h1 className={styles.h1}>Cadastre-se em nosso sistema</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.input_container}>
           <AiOutlineMail className={styles.icons} />
           <input
@@ -92,6 +107,9 @@ const Register = ({ url }: props) => {
         </div>
         <input type="submit" value="Criar conta" className={styles.btn} />
       </form>
+      {mensagem && <p className={styles.mensagem}>{mensagem}</p>}
+      {loading && <p className={styles.mensagem}>Aguarde...</p>}
+      {beforeError && <p className={styles.mensagem}>{beforeError}</p>}
     </section>
   );
 };

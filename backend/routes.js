@@ -12,6 +12,7 @@ const {
 } = require("./controllers/ItemController");
 const validationLogin = require("./middlewares/ValidationLogin");
 const deleteToken = require("./middlewares/DeleteToken");
+const tokenController = require("./controllers/TokenController");
 
 const router = Router();
 
@@ -26,5 +27,7 @@ router.get("/products", verifyToken, getItemController);
 router.get("/products/:id", verifyToken, getItemIDController);
 router.put("/products/update/:id", verifyToken, updateItemController);
 router.delete("/products/delete/:id", verifyToken, deleteItemController);
+
+router.post("/token", tokenController);
 
 module.exports = router;
