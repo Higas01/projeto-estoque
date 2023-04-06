@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+.btn {
+  margin: 2rem;
+  border: none;
+  outline: none;
+  background-color: #0db31c;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: 1s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #0b610e;
+}

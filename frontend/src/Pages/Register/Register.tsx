@@ -18,7 +18,7 @@ const Register = ({ url }: props) => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [beforeError, setBeforeError] = useState<string>("");
-  const [mensagem, setMensagem] = useState<string | undefined>(undefined);
+  const [mensagem, setMensagem] = useState<string>("");
   const { data, loading, error, fetchData } = useRegisterFetch(url);
 
   useEffect(() => {
@@ -27,14 +27,12 @@ const Register = ({ url }: props) => {
       return;
     }
     setMensagem((data as Response).message);
-    console.log(mensagem);
   }, [data]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setBeforeError("");
     setMensagem("");
-    console.log(mensagem);
     if (!validator.isEmail(email)) {
       setBeforeError("Por favor, digite um e-mail válido!");
       return;

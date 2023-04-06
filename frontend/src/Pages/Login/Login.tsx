@@ -17,34 +17,39 @@ interface Response {
 }
 
 const Login = ({ url }: props) => {
-  const { authenticated, setAuthenticated } = useContext(authContext);
+  const { verifyToken } = useContext(authContext);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [beforeError, setBeforeError] = useState("");
-  const { data, loading, error, fetchData } = useRegisterFetch(url);
   const [mensagem, setMensagem] = useState<string>("");
   const [errorAPI, setErrorAPI] = useState<string>("");
   const navigate = useNavigate();
+  const { data, loading, error, fetchData } = useRegisterFetch(url);
 
   useEffect(() => {
-    setMensagem("");
-    setErrorAPI("");
-    if (!data) {
-      return;
-    }
+    const asyncVerifyToken = async () => {
+      setMensagem("");
+      setErrorAPI("");
+      if (!data) {
+        return;
+      }
 
-    if (data && (data as Response).token) {
-      localStorage.setItem("token", JSON.stringify((data as Response).token));
-    }
-    setMensagem((data as Response).message);
-    setErrorAPI((data as Response).error);
+      if ((data as Response).token) {
+        localStorage.setItem("token", JSON.stringify((data as Response).token));
+        await verifyToken();
+      }
+      setMensagem((data as Response).message);
+      setErrorAPI((data as Response).error);
+    };
+
+    asyncVerifyToken();
   }, [data]);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
     setBeforeError("");
     setMensagem("");
     setErrorAPI("");
-    e.preventDefault();
 
     if (!email) {
       setBeforeError("Campo e-mail precisa ser preenchido");
@@ -56,7 +61,7 @@ const Login = ({ url }: props) => {
       return;
     }
 
-    const value = {
+    const value: Object = {
       email,
       password,
     };
@@ -64,7 +69,6 @@ const Login = ({ url }: props) => {
     await fetchData(value, "login", "POST");
     setEmail("");
     setPassword("");
-    navigate("/");
   };
 
   return (

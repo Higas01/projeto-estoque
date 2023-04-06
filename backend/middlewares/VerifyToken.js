@@ -4,7 +4,8 @@ const invalidTokenModel = require("../models/InvalidTokenSchema");
 
 const verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers["authorization"];
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
     const tokenInvalid = await invalidTokenModel.findOne({ token });
     if (tokenInvalid) {
       res.status(401).json({ error: "Token inválido" });

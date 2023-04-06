@@ -4,7 +4,6 @@ export const useRegisterFetch = (url: string): any => {
   const [data, setData] = useState<Object>({});
   const [loading, setLoading] = useState<boolean | null>(null);
   const [error, setError] = useState<string>("");
-
   const fetchData = async (
     value: string,
     endPoint: string,
