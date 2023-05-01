@@ -186,8 +186,8 @@ const RegisterProducts = ({ url }: Props) => {
             products.map((product) => (
               <tr key={product.id}>
                 <td>{product.product}</td>
-                <td>{product.value}</td>
-                <td>{product.qntd ? product.qntd : " - "}</td>
+                <td>R${product.value}</td>
+                <td>{product.qntd ? `${product.qntd} unidade(s)` : " - "}</td>
                 <td>{product.size ? product.size : "-"}</td>
                 <td>
                   {product.validateProduct ? product.validateProduct : "-"}

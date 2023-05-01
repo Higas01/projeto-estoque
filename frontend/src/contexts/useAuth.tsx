@@ -12,7 +12,7 @@ interface authContextProps {
   loading: boolean | null;
 }
 
-const url = "https://project-estoque.onrender.com/token";
+const url = "https://projeto-estoque.onrender.com/token";
 
 const authContext = createContext({} as authContextProps);
 

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Logout from "./Pages/Logout/Logout";
 import styles from "./App.module.css";
 
-const url = "https://project-estoque.onrender.com";
+const url = "https://projeto-estoque.onrender.com";
 
 function App() {
   const { authenticated, verifyToken, loading } = useContext(authContext);
