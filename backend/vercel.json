@@ -2,7 +2,7 @@
     "name": "backend",
     "version": 2,
     "public": true,
-    "build": [
+    "builds": [
         {
             "src": "./serve.js",
             "use": "@vercel/node"
