@@ -1,7 +1,5 @@
 {
-    "name": "backend",
     "version": 2,
-    "public": true,
     "builds": [
         {
             "src": "./serve.js",
@@ -11,7 +9,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "./serve.js"
         }
     ]
 
