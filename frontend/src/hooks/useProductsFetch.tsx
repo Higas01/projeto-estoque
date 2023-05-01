@@ -6,15 +6,20 @@ export const useProductsFetch = (url: string): any => {
   const [error, setError] = useState<string>("");
 
   const fetchData = async (
-    value: string,
     endPoint: string,
     method: string,
-    token: string
+    token: string,
+    value?: string
   ): Promise<Object | undefined> => {
     if (method === "GET") {
       try {
         setLoading(true);
-        const response = await fetch(`${url}/${endPoint}`);
+        const response = await fetch(`${url}/${endPoint}`, {
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        });
         const responseJSON = await response.json();
         setData(responseJSON);
         setLoading(false);
@@ -31,8 +36,15 @@ export const useProductsFetch = (url: string): any => {
             "Content-type": "application/json",
             authorization: `Bearer ${token}`,
           },
+          body: value ? JSON.stringify(value) : "",
         });
-      } catch (error) {}
+        const responseJSON = await response.json();
+        setData(responseJSON);
+        setLoading(false);
+        return data;
+      } catch (error) {
+        setError("Ocorreu um erro, por favor, tente novamente mais tarde");
+      }
     }
   };
 

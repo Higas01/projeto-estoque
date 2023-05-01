@@ -6,27 +6,138 @@
   font-size: 1.5rem;
 }
 
+.table_container {
+  overflow-x: auto;
+}
+
 .table {
   border-collapse: collapse;
   margin: 0 auto;
-  width: 1rem;
+  width: 100%;
   height: 2.5rem;
+  font-size: 1rem;
 }
 
 td {
-  font-size: 0.7rem;
+  font-size: 1rem;
+  width: 20vw;
   padding: 1rem;
-  text-align: center;
+  text-align: left;
 }
 
 th {
+  text-align: left;
+  width: 20vw;
   padding: 0.7rem;
 }
 
 thead {
-  border: 1px solid #000;
+  border-bottom: 0.1px solid #808080;
 }
 
 tr {
-  border-bottom: 1px solid #000;
+  text-align: left;
+  border-bottom: 0.1px solid #808080;
+}
+
+.btn_create {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: #229a00;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  transition: 3s;
+}
+
+.create_btn_container {
+  width: 98%;
+  text-align: right;
+  margin: 0.5rem;
+}
+
+.btn_create:hover {
+  background-color: #90ee90;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.container_input_modal {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem;
+  background-color: #fff;
+}
+
+span {
+  font-weight: bold;
+}
+
+.container_inputs {
+  margin: 1rem;
+}
+
+.container_inputs,
+label {
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.container_input,
+label,
+span {
+  margin: 0.5rem;
+}
+
+.inputs_create_products {
+  border: none;
+  border-bottom: 0.1rem solid #000;
+  position: relative;
+  font-size: 1rem;
+  width: inherit;
+  height: inherit;
+  outline: none;
+}
+
+.create_products_submit {
+  border: none;
+  outline: none;
+  text-align: center;
+  width: 90%;
+  cursor: pointer;
+  font-size: 1rem;
+  background: none;
+}
+
+.modal_btn {
+  background: none;
+  outline: none;
+  border: none;
+  width: 100%;
+  text-align: end;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal_hidden {
+  display: none;
+}
+
+.p_modal {
+  margin: 2rem;
+  font-weight: bold;
 }

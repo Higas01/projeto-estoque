@@ -62,7 +62,11 @@ function App() {
             <Route
               path="/registerProducts"
               element={
-                authenticated ? <RegisterProducts /> : <Navigate to="/" />
+                authenticated ? (
+                  <RegisterProducts url={url} />
+                ) : (
+                  <Navigate to="/" />
+                )
               }
             />
             <Route
