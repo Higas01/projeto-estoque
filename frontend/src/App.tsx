@@ -15,7 +15,6 @@ const url = "https://projeto-estoque.onrender.com";
 function App() {
   const { authenticated, verifyToken } = useContext(authContext);
   const [loading, setLoading] = useState<boolean>(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const asyncVerifyToken = async () => {
@@ -43,13 +42,13 @@ function App() {
             <Route
               path="/login"
               element={
-                authenticated ? <Navigate to="/" /> : <Login url={url} />
+                authenticated ? <Navigate to={"/"} /> : <Login url={url} />
               }
             />
             <Route
               path="/register"
               element={
-                authenticated ? <Navigate to="/" /> : <Register url={url} />
+                authenticated ? <Navigate to={"/"} /> : <Register url={url} />
               }
             />
           </Routes>
