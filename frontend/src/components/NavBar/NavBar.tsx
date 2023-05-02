@@ -6,6 +6,11 @@ import { authContext } from "../../contexts/useAuth";
 const NavBar = () => {
   const { authenticated } = useContext(authContext);
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    location.reload();
+  };
+
   return (
     <nav className={styles.nav}>
       {authenticated ? (
@@ -29,6 +34,7 @@ const NavBar = () => {
                 type="button"
                 value="Logout"
                 className={styles.input_btn}
+                onClick={logout}
               />
             </li>
           </ul>

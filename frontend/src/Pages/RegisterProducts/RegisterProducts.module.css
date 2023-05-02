@@ -61,7 +61,8 @@ tr {
   background-color: #90ee90;
 }
 
-.modal {
+.modal,
+.modal_edit {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,11 +134,16 @@ span {
   cursor: pointer;
 }
 
-.modal_hidden {
+.modal_hidden,
+.modal_hidden_edit {
   display: none;
 }
 
 .p_modal {
   margin: 2rem;
   font-weight: bold;
+}
+
+.icon {
+  cursor: pointer;
 }

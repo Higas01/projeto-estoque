@@ -85,7 +85,9 @@ const updateItemController = async (req, res) => {
       return;
     }
 
-    res.status(200).json({ message: "Produto atualizado com sucesso" });
+    res.status(200).json({
+      message: "Produto atualizado com sucesso",
+    });
   } catch (error) {
     res
       .status(500)

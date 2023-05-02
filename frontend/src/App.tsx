@@ -4,17 +4,17 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { authContext } from "./contexts/useAuth";
 import RegisterProducts from "./Pages/RegisterProducts/RegisterProducts";
 import { useNavigate } from "react-router-dom";
-import Logout from "./Pages/Logout/Logout";
 import styles from "./App.module.css";
 
 const url = "https://projeto-estoque.onrender.com";
 
 function App() {
-  const { authenticated, verifyToken, loading } = useContext(authContext);
+  const { authenticated, verifyToken } = useContext(authContext);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +22,7 @@ function App() {
       await verifyToken();
     };
     asyncVerifyToken();
+    setLoading(false);
   }, []);
 
   return (
@@ -68,10 +69,6 @@ function App() {
                   <Navigate to="/" />
                 )
               }
-            />
-            <Route
-              path="/logout"
-              element={authenticated ? <Logout /> : <Navigate to="/" />}
             />
           </Routes>
           <Footer />

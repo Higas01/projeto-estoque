@@ -22,7 +22,6 @@ export const useProductsFetch = (url: string): any => {
         });
         const responseJSON = await response.json();
         setData(responseJSON);
-        setLoading(false);
         return data;
       } catch (error) {
         setError("Ocorreu algum erro, por favor, tente novamente mais tarde");
@@ -40,12 +39,44 @@ export const useProductsFetch = (url: string): any => {
         });
         const responseJSON = await response.json();
         setData(responseJSON);
-        setLoading(false);
+        return data;
+      } catch (error) {
+        setError("Ocorreu um erro, por favor, tente novamente mais tarde");
+      }
+    } else if (method === "DELETE") {
+      try {
+        const response = await fetch(`${url}/${endPoint}`, {
+          method,
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        });
+        setLoading(true);
+        const responseJSON = await response.json();
+        setData(responseJSON);
+        return data;
+      } catch (error) {
+        setError("Ocorreu um erro, por favor, tente novamente mais tarde.");
+      }
+    } else if (method === "PUT") {
+      try {
+        const response = await fetch(`${url}/${endPoint}`, {
+          method,
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(value),
+        });
+        const responseJSON = await response.json();
+        setData(responseJSON);
         return data;
       } catch (error) {
         setError("Ocorreu um erro, por favor, tente novamente mais tarde");
       }
     }
+    setLoading(false);
   };
 
   return { data, loading, error, fetchData };
