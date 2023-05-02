@@ -7,7 +7,7 @@ import Login from "./Pages/Login/Login";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "./contexts/useAuth";
 import RegisterProducts from "./Pages/RegisterProducts/RegisterProducts";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./App.module.css";
 
 const url = "https://projeto-estoque.onrender.com";
@@ -43,7 +43,7 @@ function App() {
               path="/login"
               element={
                 authenticated ? (
-                  <RegisterProducts url={url} />
+                  <Navigate to={"/"} replace={true} />
                 ) : (
                   <Login url={url} />
                 )
@@ -53,7 +53,7 @@ function App() {
               path="/register"
               element={
                 authenticated ? (
-                  <RegisterProducts url={url} />
+                  <Navigate to={"/"} replace={true} />
                 ) : (
                   <Register url={url} />
                 )
