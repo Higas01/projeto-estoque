@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { authContext } from "../../contexts/useAuth";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 const NavBar = () => {
   const { authenticated } = useContext(authContext);
-  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    redirect("/");
+    location.reload();
   };
 
   return (
