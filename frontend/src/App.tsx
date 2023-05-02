@@ -37,37 +37,19 @@ function App() {
             <Route
               path="/"
               element={
-                authenticated ? <Navigate to="/registerProducts" /> : <Home />
+                authenticated ? <RegisterProducts url={url} /> : <Home />
               }
             />
             <Route
               path="/login"
               element={
-                authenticated ? (
-                  <Navigate to="/registerProducts" />
-                ) : (
-                  <Login url={url} />
-                )
+                authenticated ? <Navigate to="/" /> : <Login url={url} />
               }
             />
             <Route
               path="/register"
               element={
-                authenticated ? (
-                  <Navigate to="/registerProducts" />
-                ) : (
-                  <Register url={url} />
-                )
-              }
-            />
-            <Route
-              path="/registerProducts"
-              element={
-                authenticated ? (
-                  <RegisterProducts url={url} />
-                ) : (
-                  <Navigate to="/" />
-                )
+                authenticated ? <Navigate to="/" /> : <Register url={url} />
               }
             />
           </Routes>

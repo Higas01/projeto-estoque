@@ -23,7 +23,7 @@ const NavBar = () => {
           <ul className={styles.ul}>
             <li>
               <NavLink
-                to="/registerProducts"
+                to="/"
                 className={({ isActive, isPending }) =>
                   isPending ? "" : isActive ? "active" : ""
                 }
