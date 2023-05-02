@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const jwtSecret = process.env.JWT_SECRET;
+const jwtSecret = "secret";
 const invalidTokenModel = require("../models/InvalidTokenSchema");
 
 const verifyToken = async (req, res, next) => {
