@@ -8,7 +8,8 @@ type Props = {
 };
 
 const RegisterProducts = ({ url }: Props) => {
-  const { data, loading, error, fetchData } = useProductsFetch(url);
+  const { data, error, fetchData } = useProductsFetch(url);
+  const [loading, setLoading] = useState(false);
   const [submitMsg, setSubmitMsg] = useState("");
   const [products, setProducts] = useState<Array<any>>([]);
   const [product, setProduct] = useState<string>("");
@@ -84,6 +85,9 @@ const RegisterProducts = ({ url }: Props) => {
         dataValue
       );
     }
+    if (loading) setLoading(false);
+    else setLoading(true);
+
     modal?.classList.remove(styles.modal);
     modal?.classList.add(styles.modal_hidden);
     setProduct("");
@@ -99,7 +103,8 @@ const RegisterProducts = ({ url }: Props) => {
       "DELETE",
       tokenValidate
     );
-    console.log(res);
+    if (loading) setLoading(false);
+    else setLoading(true);
   };
 
   interface product {
@@ -134,7 +139,7 @@ const RegisterProducts = ({ url }: Props) => {
       setProducts(getProducts);
     };
     getItems();
-  }, [data]);
+  }, [loading]);
 
   return (
     <section>

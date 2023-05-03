@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 export const useProductsFetch = (url: string): any => {
-  const [data, setData] = useState<object>({});
-  const [loading, setLoading] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   const fetchData = async (
@@ -13,7 +12,6 @@ export const useProductsFetch = (url: string): any => {
   ): Promise<Object | undefined> => {
     if (method === "GET") {
       try {
-        setLoading(true);
         const response = await fetch(`${url}/${endPoint}`, {
           headers: {
             "Content-type": "application/json",
@@ -21,14 +19,13 @@ export const useProductsFetch = (url: string): any => {
           },
         });
         const responseJSON = await response.json();
-        setData(responseJSON);
-        return data;
+        setLoading(false);
+        return responseJSON;
       } catch (error) {
         setError("Ocorreu algum erro, por favor, tente novamente mais tarde");
       }
     } else if (method === "POST") {
       try {
-        setLoading(true);
         const response = await fetch(`${url}/${endPoint}`, {
           method,
           headers: {
@@ -38,8 +35,8 @@ export const useProductsFetch = (url: string): any => {
           body: value ? JSON.stringify(value) : "",
         });
         const responseJSON = await response.json();
-        setData(responseJSON);
-        return data;
+        setLoading(false);
+        return responseJSON;
       } catch (error) {
         setError("Ocorreu um erro, por favor, tente novamente mais tarde");
       }
@@ -52,10 +49,9 @@ export const useProductsFetch = (url: string): any => {
             authorization: `Bearer ${token}`,
           },
         });
-        setLoading(true);
         const responseJSON = await response.json();
-        setData(responseJSON);
-        return data;
+        setLoading(false);
+        return responseJSON;
       } catch (error) {
         setError("Ocorreu um erro, por favor, tente novamente mais tarde.");
       }
@@ -70,14 +66,13 @@ export const useProductsFetch = (url: string): any => {
           body: JSON.stringify(value),
         });
         const responseJSON = await response.json();
-        setData(responseJSON);
-        return data;
+        setLoading(false);
+        return responseJSON;
       } catch (error) {
         setError("Ocorreu um erro, por favor, tente novamente mais tarde");
       }
     }
-    setLoading(false);
   };
 
-  return { data, loading, error, fetchData };
+  return { loading, error, fetchData };
 };
