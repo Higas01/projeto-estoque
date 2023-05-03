@@ -1,2 +1,8 @@
 node_modules
+<<<<<<< HEAD
 .env
+=======
+vercel.json
+.env
+.vscode
+>>>>>>> 5a8df7621574e3631af784e00b2d6a76438f512f
