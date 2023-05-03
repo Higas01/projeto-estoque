@@ -14,9 +14,9 @@ const NavBar = () => {
   };
 
   return (
-    <nav className={styles.nav}>
+    <>
       {authenticated ? (
-        <>
+        <nav className={styles.nav_no_authenticated}>
           <h2 className={styles.h2}>
             <Link to="/">HM Estoque</Link>
           </h2>
@@ -40,9 +40,9 @@ const NavBar = () => {
               />
             </li>
           </ul>
-        </>
+        </nav>
       ) : (
-        <>
+        <nav className={styles.nav}>
           <h2 className={styles.h2}>
             <Link to="/">HM Estoque</Link>
           </h2>
@@ -68,9 +68,9 @@ const NavBar = () => {
               </NavLink>
             </li>
           </ul>
-        </>
+        </nav>
       )}
-    </nav>
+    </>
   );
 };
 

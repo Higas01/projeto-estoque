@@ -1,10 +1,12 @@
 .p_footer {
-  font-size: 1rem;
+  font-size: 2rem;
 }
 .footer {
+  border-top: 1px solid #837f7f;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 15vh;
-  border-top: 1.5px solid #c4c1c1;
+  height: 15vh;
+  background-color: #fff;
 }

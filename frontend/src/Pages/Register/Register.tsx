@@ -105,9 +105,16 @@ const Register = ({ url }: props) => {
         </div>
         <input type="submit" value="Criar conta" className={styles.btn} />
       </form>
-      {mensagem && <p className={styles.mensagem}>{mensagem}</p>}
-      {loading && <p className={styles.mensagem}>Aguarde...</p>}
-      {beforeError && <p className={styles.mensagem}>{beforeError}</p>}
+      {mensagem && (
+        <div className={styles.mensagem_container}>
+          <p className={styles.mensagem}>{mensagem}</p>
+        </div>
+      )}
+      {beforeError && (
+        <div className={styles.mensagem_container}>
+          <p className={styles.mensagem}>{beforeError}</p>
+        </div>
+      )}
     </section>
   );
 };

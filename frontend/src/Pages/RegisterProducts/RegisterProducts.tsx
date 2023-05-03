@@ -142,13 +142,13 @@ const RegisterProducts = ({ url }: Props) => {
   }, [loading]);
 
   return (
-    <section>
+    <section className={styles.section}>
       <div className={styles.modal_hidden}>
         <div className={styles.container_input_modal}>
           <button className={styles.modal_btn} onClick={handleShowModal}>
             X
           </button>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.container_inputs}>
               <label>
                 <span>Nome do produto: </span>
