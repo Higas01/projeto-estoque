@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const jwtSecret = "secret";
+const JWT_SECRET = process.env.JWT_SECRET;
 const invalidTokenModel = require("../models/InvalidTokenSchema");
 
 const verifyToken = async (req, res, next) => {
@@ -11,7 +11,7 @@ const verifyToken = async (req, res, next) => {
       res.status(401).json({ error: "Token inválido" });
       return;
     }
-    jwt.verify(token, jwtSecret, (err, decoded) => {
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
       if (err) return res.status(401).json({ error: "Token inválido" });
 
       req.id = decoded.id;

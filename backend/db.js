@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
+const DB_PASS = process.env.DB_PASS;
+const DB_USER = process.env.DB_USER;
 
 const db = async () => {
   try {
     await mongoose.connect(
-      `mongodb+srv://darkrapcontato:FN2g1pqGqB9tBu0U@cluster0.zjuqjcp.mongodb.net/?retryWrites=true&w=majority`
+      `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.zjuqjcp.mongodb.net/?retryWrites=true&w=majority`
     );
   } catch (e) {
     console.log(e);
