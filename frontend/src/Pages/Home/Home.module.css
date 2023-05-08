@@ -1,12 +1,12 @@
 .h1 {
   color: #fff;
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 .h2 {
   font-weight: normal;
   color: #fff;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .p {
@@ -37,7 +37,7 @@
 }
 
 .h1_section2 {
-  font-size: 7rem;
+  font-size: 5rem;
   color: #3593ac;
   font-weight: bold;
 }
@@ -53,18 +53,18 @@
 .p_section2 {
   white-space: pre-wrap;
   color: #3593ac;
-  font-size: 2rem;
+  font-size: 2.5rem;
   max-width: 75%;
 }
 
 .img_estoque {
-  max-width: 814px;
-  max-height: 596px;
+  max-width: 700px;
+  max-height: 700px;
 }
 
 .img_gestao {
-  max-width: 800px;
-  max-height: 445px;
+  max-width: 600px;
+  max-height: 400px;
 }
 
 .a {
@@ -97,6 +97,18 @@
   background: none;
   border: 1px solid #000;
   color: #000;
+}
+
+@media (max-width: 1350px) {
+  .img_estoque {
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .img_gestao {
+    max-width: 500px;
+    max-height: 400px;
+  }
 }
 
 @media (max-width: 1000px) {
